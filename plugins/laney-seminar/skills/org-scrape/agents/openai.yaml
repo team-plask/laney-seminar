@@ -1,0 +1,4 @@
+interface:
+  display_name: "org-scrape"
+  short_description: "Collect one business's public presence into a typed corpus for org-evidence"
+  default_prompt: "Use $org-scrape to collect everything publicly known about this business and normalize it into a corpus."

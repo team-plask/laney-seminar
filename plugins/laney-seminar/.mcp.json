@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "laney": {
+      "type": "http",
+      "url": "https://dashboard.laney.app/api/mcp"
+    }
+  }
+}

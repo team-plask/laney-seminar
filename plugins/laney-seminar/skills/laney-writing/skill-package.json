@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "package": "@laney/writing",
+  "version": "0.1.0",
+  "skillName": "laney-writing",
+  "kind": "policy",
+  "dependencies": {},
+  "composition": {},
+  "exports": {
+    "agent": "SKILL.md",
+    "principles": "references/writing-principles.md",
+    "customerVoice": "references/customer-voice.md",
+    "guideAuthoring": "references/guide-authoring.md"
+  }
+}

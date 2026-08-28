@@ -1,0 +1,125 @@
+{
+  "_doc": "STYLE = how an image FEELS. Palette, light, medium, mood. Nothing about composition or subject: that is the SHOT axis (shots.json), and where it lands on the page is the SURFACE axis (references/surfaces.md). One org gets ONE style for its whole page. Rhythm comes from varying the shot, never from varying the style. Styles are a starting menu; edit the color words and mood to match a brand, or add a new entry. Every style also feeds higgsfield: the `common` string is passed through as style wording when generation is delegated.",
+  "editorial-warm": {
+    "label": "Editorial warm",
+    "register": "dignified",
+    "palette": "cream, warm beige, terracotta, soft gold",
+    "common": "warm natural window light with soft directional shadows, cream and terracotta palette, subtle film grain, shallow depth of field, 85mm lens look, premium and calm mood",
+    "style_reference": "In the style of Aubrie Pick and Beth Kirby"
+  },
+  "institutional-calm": {
+    "label": "Institutional calm",
+    "register": "dignified",
+    "palette": "deep navy, slate grey, cool white, muted steel blue",
+    "common": "restrained corporate photography, even diffused daylight with almost no hard shadow, deep navy and slate and cool white palette, sober and trustworthy mood, quiet symmetry, understated and precise, no visual noise",
+    "style_reference": "In the style of Nadav Kander and Hélène Binet"
+  },
+  "luxe-dark": {
+    "label": "Luxe dark",
+    "register": "dignified",
+    "palette": "charcoal, ink black, deep bronze, brushed gold highlight",
+    "common": "dark moody set, single dramatic spotlight, charcoal to black gradient background, brushed gold rim light, deep contrast, elegant premium and exclusive mood, refined finish",
+    "style_reference": "In the style of Paolo Roversi and Nick Knight"
+  },
+  "clean-minimal": {
+    "label": "Clean minimal",
+    "register": "sophisticated",
+    "palette": "bright white, cool light grey, one soft shadow",
+    "common": "bright even softbox lighting, seamless off-white backdrop, one soft grounded contact shadow, crisp focus edge to edge, neutral true-to-life color, uncluttered and precise",
+    "style_reference": "In the style of Scheltens & Abbenes"
+  },
+  "mono-editorial": {
+    "label": "Mono editorial",
+    "register": "sophisticated",
+    "palette": "black, white, silver grey, no color",
+    "common": "black and white photography, high contrast with deep blacks and clean bright highlights, hard directional key light, fine silver grain, high-fashion editorial mood, confident and austere, no color anywhere",
+    "style_reference": "In the style of Peter Lindbergh and Herb Ritts"
+  },
+  "tech-gradient": {
+    "label": "Tech gradient",
+    "register": "sophisticated",
+    "palette": "deep indigo, violet, electric blue, cyan glow on near-black",
+    "common": "sleek glassmorphic and brushed-metal surfaces with soft volumetric glow, subtle mesh-gradient lighting in indigo violet and electric blue on a deep near-black background, premium developer-tool aesthetic, crisp high-detail render",
+    "style_reference": "In the style of Andreas Gursky and Zaha Hadid renderings"
+  },
+  "soft-pastel": {
+    "label": "Soft pastel",
+    "register": "gentle",
+    "palette": "blush pink, powder blue, pale sage, warm ivory",
+    "common": "diffused pastel light, blush and powder-blue and pale-sage palette, airy soft focus, delicate highlights, gentle and soothing wellness mood, dreamy and serene",
+    "style_reference": "In the style of Petra Collins and Rinko Kawauchi"
+  },
+  "natural-organic": {
+    "label": "Natural organic",
+    "register": "gentle",
+    "palette": "earthy brown, moss green, oat, stone grey",
+    "common": "soft daylight, earthy organic styling, textures of linen and wood and stone, moss-green and oatmeal palette, matte finish, handmade and honest mood, unpolished authenticity",
+    "style_reference": "In the style of Jasper Fry and Mikkel Vang"
+  },
+  "film-documentary": {
+    "label": "Film documentary",
+    "register": "gentle",
+    "palette": "muted natural color, warm skin tones, slightly faded",
+    "common": "available natural light only, 35mm film look with visible grain and slightly faded muted color, honest unstaged documentary mood, mild lens vignetting, imperfect and real, no studio lighting",
+    "style_reference": "In the style of Alec Soth and Rinko Kawauchi"
+  },
+  "bold-graphic": {
+    "label": "Bold graphic",
+    "register": "loud",
+    "palette": "one saturated accent on a flat contrasting field",
+    "common": "high-contrast hard light, a single saturated brand color as a flat backdrop, crisp geometric shadow, confident modern and punchy mood, clean commercial finish, striking simplicity",
+    "style_reference": "In the style of Carl Kleiner and Maurizio Cattelan"
+  },
+  "pop-maximal": {
+    "label": "Pop maximal",
+    "register": "kitsch",
+    "palette": "clashing saturated complements, hot pink, cyan, acid yellow",
+    "common": "loud maximalist pop styling, direct hard on-camera flash with a crisp dark drop shadow, clashing saturated complementary colors of hot pink and cyan and acid yellow, playful excessive and unserious mood, glossy plastic finish, deliberately over the top",
+    "style_reference": "In the style of David LaChapelle and Miles Aldridge"
+  },
+  "retro-print": {
+    "label": "Retro print",
+    "register": "kitsch",
+    "palette": "two-color riso, fluorescent pink and blue on off-white paper",
+    "common": "risograph print look, two-color separation in fluorescent pink and blue on off-white uncoated paper, visible halftone dots, slight ink misregistration and roller texture, flat limited-palette shapes, nostalgic zine mood, printed not photographed",
+    "style_reference": "In the style of Hato Press risograph editions"
+  },
+  "y2k-chrome": {
+    "label": "Y2K chrome",
+    "register": "kitsch",
+    "palette": "liquid chrome, iridescent holographic, electric lilac, acid green",
+    "common": "late-nineties CG aesthetic, liquid chrome and iridescent holographic surfaces, blown-out specular highlights and lens flare, electric lilac and acid green, glossy bubbly forms, optimistic techno-futuristic mood, deliberately artificial",
+    "note": "Nostalgic and artificial by design. Do not combine with a realism `extra` clause; they fight.",
+    "style_reference": "In the style of late-1990s Designers Republic and chrome CGI"
+  },
+  "paper-collage": {
+    "label": "Paper collage",
+    "register": "kitsch",
+    "palette": "construction-paper primaries on textured craft paper",
+    "common": "cut-paper collage look, layered torn and scissor-cut construction paper with visible fibrous edges and soft drop shadows between layers, textured craft-paper ground, warm primaries, handmade tactile and friendly mood, analogue not rendered",
+    "style_reference": "In the style of Eiko Ojala and Matisse cut-outs"
+  },
+  "flat-graphic": {
+    "label": "Flat graphic",
+    "register": "neutral",
+    "palette": "2 to 3 flat brand colors, no photographic texture",
+    "common": "simple bold flat shapes, minimal two or three color flat design, even lighting, no photographic texture, no gradient, crisp modern app-icon aesthetic",
+    "note": "The style for icons and logo marks. Pair with the `icon-flat` or `logo-mark` shot, which carry the no-3D and no-pedestal constraints."
+  },
+  "_aliases": {
+    "_doc": "Old --preset names, kept so existing commands keep working. Each resolves to a {shot, style} pair. Prefer --shot and --style in new work.",
+    "clean-studio": {
+      "style": "clean-minimal",
+      "shot": "product-catalog"
+    },
+    "portrait": {
+      "style": "clean-minimal",
+      "shot": "portrait-headshot"
+    },
+    "flat-icon": {
+      "style": "flat-graphic",
+      "shot": "icon-flat"
+    }
+  },
+  "_style_reference": "A named photographer or studio is the single strongest lever on how an image LOOKS, and it is what higgsfield's own enhancer reaches for: it writes a [STYLE REFERENCE] line naming real photographers into every brief. Mood words alone ('calm', 'premium') produce the generic stock look. Append this line to a local prompt, or pass it in --brand_context when delegating. Names of living photographers describe an aesthetic here; do not ask a model to imitate a specific living person's likeness or to reproduce a specific copyrighted photograph."
+}

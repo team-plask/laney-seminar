@@ -1,0 +1,4 @@
+interface:
+  display_name: "Laney 글쓰기"
+  short_description: "Laney 문서를 명확하고 자연스러운 한국어로 작성"
+  default_prompt: "$laney-writing을 사용해 Laney의 고객 문구, 제품 문서, 기술 문서, 내부 문서를 작성하거나 검토하세요. 사실과 장르를 보존하고 번역투와 AI 문체를 다듬으세요."

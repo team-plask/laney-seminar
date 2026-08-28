@@ -1,0 +1,45 @@
+{
+  "composition": {
+    "@laney/writing": "always"
+  },
+  "creation": {
+    "candidates": [
+      "@laney/org-launch-prep",
+      "@laney/org-evidence",
+      "nomadamas/k-skill/housing-official-price",
+      "yoanbernabeu/supabase-pentest-skills/supabase-evidence",
+      "garrytan/gbrain/eiirp",
+      "wanshuiyin/auto-claude-code-research-in-sleep/web-debug-search",
+      "ericgandrade/claude-superskills/deep-research",
+      "membranedev/application-skills/officient",
+      "open-agreements/open-agreements/iso-27001-evidence-collection",
+      "dineway/dineway-skills/building-restaurant-site",
+      "mukul975/privacy-data-protection-skills/audit-evidence-collect",
+      "matlab/matlab-agentic-toolkit/matlab-normalize-image"
+    ],
+    "discoveredAt": "2026-08-25T04:38:04.437Z",
+    "discoveryReview": "complete",
+    "intent": "Collect everything publicly known about one business (official site full nav walk, Naver Place and official blog, industry platforms such as Gangnam Unni, Babitalk and LawTalk, news) including image-baked prices and profiles read with vision, and normalize it into a typed corpus that org-evidence turns into its evidence ledger.",
+    "reason": "Restores the workspace's own org-scrape skill (git 59e3d6e^) that org-evidence distilled its rules from; remote candidates are generic crawlers without the Korean platform playbooks, forced industry checklists, vision reading of image-baked content, or the org-evidence privacy and provenance contract. Restored from git history rather than authored anew."
+  },
+  "dependencies": {
+    "@laney/writing": "workspace:*"
+  },
+  "exports": {
+    "agent": "SKILL.md",
+    "claudeBrowser": "references/claude-browser.md",
+    "claudeVisionReading": "references/claude-vision-reading.md",
+    "corpusContract": "references/corpus-format.md",
+    "dynamicCapture": "references/dynamic-capture.md",
+    "evidenceHandoff": "references/evidence-handoff.md",
+    "imageReader": "scripts/read_images.py",
+    "industryProfiles": "references/industry-profiles.md",
+    "naverBlogCollector": "scripts/fetch_naver_blog.py",
+    "platforms": "references/platforms.md"
+  },
+  "kind": "workflow",
+  "package": "@laney/org-scrape",
+  "schemaVersion": 1,
+  "skillName": "org-scrape",
+  "version": "0.1.0"
+}

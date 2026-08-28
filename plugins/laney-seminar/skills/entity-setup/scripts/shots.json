@@ -1,0 +1,288 @@
+{
+  "_doc": "SHOT = what an image DEPICTS, and how it is framed. Composition, subject count, the rhythm beats a batch cycles through, and the quality levers that shot always needs. Nothing about palette or mood: that is the STYLE axis (styles.json). One registry, two backends: `framing` and `rhythm` feed our own imagegen.py, and `higgsfield` routes the same intent to the delegated generator.",
+  "_model_ids": "Every `model` here was read off `higgsfield model list`, not off their docs, because the two disagree. The ids are NOT what their names suggest: `nano_banana_2` is display-name 'Nano Banana Pro', while plain 'Nano Banana 2' is the id `nano_banana_flash`. Their own SKILL.md routes character work to `nano_banana_2` believing it is Nano Banana 2. Re-check with `higgsfield model list` before trusting any id in this file; the catalog is the authority and it moves.",
+  "_no_text": "APPEND THIS TO EVERY DELEGATED PROMPT, for every shot except logo-mark: 'NO text, no letters, no words, no numbers, no caption, no subtitle, no signage, no watermark, no logo anywhere in the image'. For a shot with people, add 'no embroidered text or name badge on clothing'. IT REDUCES THE PROBLEM, IT DOES NOT SOLVE IT. Measured on soul_location: unguarded, it burned the prompt across a hero as 'Thee Specialty-coffee l-tiust after opening'; guarded, one run came back clean and the next still captioned a clinic lounge with 'The trusting handshacipe was over. Google Welcome to pay per appointment?'. Roughly half. text2image_soul_v2 embroidered garbled Korean onto two of three white coats. SO: LOOK AT EVERY DELEGATED IMAGE BEFORE USING IT, and re-run the ones with text. For a hero backdrop, where a real headline sits on top and any caption is fatal, prefer the local Gemini path: its style directive forbids text and has not leaked. logo-mark is exempt, a wordmark is the point there.",
+  "_aspect": "`default_aspect` is what the SURFACE wants; the delegated model may not accept it, and the CLI hard-errors rather than coercing. Verified with `higgsfield model get <id> --json`: soul_location and nano_banana_flash take 21:9, but gpt_image_2 and text2image_soul_v2 stop at 16:9. So a 21:9 hero-ui or band-bleed image is either generated locally, where Gemini takes 21:9, or delegated at the `delegated_aspect` below and accepted a little taller. Re-query before assuming; the sets differ per model and move.",
+  "_cutout": "Transparency has two routes. An ISOLATED cutout goes to higgsfield `image_background_remover`, one call, and its edges on glass and hair beat our green pass. A GROUNDED one (bottom-anchored, or --fill-width, the band media that has to rise out of a tone band) stays local: that model takes only `medias` and has no composition control, so it cannot crop a subject to the bottom edge. Flat logos and icons also stay local on the white matte, and everything falls back to local when higgsfield auth is unavailable.",
+  "scene-wide": {
+    "label": "Wide establishing scene",
+    "framing": "a wide establishing view of the whole space with real depth, foreground and background separated, one clear area of calm empty space where a headline can sit",
+    "rhythm": [
+      "an even eye-level view, the open space falling on the left",
+      "a slightly raised vantage looking across the space",
+      "a lower angle with something soft passing close to the lens",
+      "a corner view with a long diagonal receding into depth"
+    ],
+    "subject_hint": "Name the place and the moment: 'a sunlit specialty-coffee bar counter just after opening'. Do not name a person here.",
+    "default_aspect": "16:9",
+    "transparent": "no",
+    "higgsfield": {
+      "skill": "higgsfield-generate",
+      "model": "soul_location"
+    },
+    "note": "The hero backdrop. Copy sits on top of it, so the empty area is the whole point. Interiors come with invented signage on the walls. That is a different failure from a burned-in caption and the no-text clause does not prevent it, so read the frame for a legible brand name that is not the org's."
+  },
+  "portrait-headshot": {
+    "label": "Portrait, head and shoulders",
+    "framing": "a head-and-shoulders portrait, one person, friendly and composed expression, eyes to the lens, shallow depth of field",
+    "rhythm": [
+      "facing the camera straight on",
+      "a slight natural turn to the left",
+      "a slight natural turn to the right",
+      "a relaxed three-quarter pose, shoulders angled away"
+    ],
+    "extra": "photorealistic, realistic skin texture with visible pores and fine detail, subtle natural imperfections, not plastic, not airbrushed",
+    "subject_hint": "Describe role, approximate age band, and clothing, never a real person's name: 'a dentist in her forties in a white coat'. Name the market explicitly ('a Korean woman in her forties'): left unsaid, these models default to Western faces, which reads wrong on a Korean clinic page.",
+    "default_aspect": "1:1",
+    "transparent": "ok",
+    "higgsfield": {
+      "skill": "higgsfield-generate",
+      "model": "text2image_soul_v2"
+    },
+    "note": "For a team grid where the SAME face must recur across images, train a Soul first with higgsfield-soul-id and pass its reference id.",
+    "cutout": "higgsfield image_background_remover when isolated; local imagegen.py cutout when bottom-anchored or fill-width"
+  },
+  "candid-at-work": {
+    "label": "Candid, someone working",
+    "framing": "a candid unposed moment of a person absorbed in their work, caught mid-action, the room readable around them, not looking at the camera",
+    "rhythm": [
+      "a medium shot from across the room",
+      "a closer waist-up frame from a slight angle",
+      "an over-the-shoulder view of what they are working on",
+      "a wide frame with the person small inside the space"
+    ],
+    "extra": "natural available lighting, photorealistic, realistic skin texture, subtle natural imperfections, not plastic",
+    "subject_hint": "Lead with the action, then the person: 'a barista tamping a shot, steam rising'. Name the market explicitly ('a Korean woman in her forties'): left unsaid, these models default to Western faces, which reads wrong on a Korean clinic page.",
+    "default_aspect": "4:3",
+    "transparent": "no",
+    "higgsfield": {
+      "skill": "higgsfield-product-photoshoot",
+      "mode": "lifestyle_scene"
+    }
+  },
+  "hands-in-use": {
+    "label": "Hands using the thing",
+    "framing": "a tight crop on hands using the object, forearms and the object filling most of the frame, no face or only a fragment of one, the object clearly readable",
+    "rhythm": [
+      "seen from the user's own viewpoint looking down",
+      "a side-on view with the hands entering from the right",
+      "a very close crop on fingertips and the contact point",
+      "a slightly pulled-back frame showing both hands"
+    ],
+    "extra": "photorealistic, realistic skin texture on the hands, natural nails and knuckles, subtle imperfections, not plastic",
+    "subject_hint": "Say what the hands are doing to what: 'hands lifting a warm ceramic cup from a saucer'. Name the market explicitly ('a Korean woman in her forties'): left unsaid, these models default to Western faces, which reads wrong on a Korean clinic page.",
+    "default_aspect": "1:1",
+    "transparent": "no",
+    "higgsfield": {
+      "skill": "higgsfield-product-photoshoot",
+      "mode": "closeup_product_with_person"
+    },
+    "note": "The safest way to put people on a page. No face means no uncanny face."
+  },
+  "group-team": {
+    "label": "Small group",
+    "framing": "a small group of three to five people together in their real workplace, relaxed and connected to each other, everyone fully in frame and roughly the same size",
+    "rhythm": [
+      "an even straight-on group frame",
+      "a slightly angled view with the group turned toward one another",
+      "a walking or moving frame with light motion",
+      "a seated arrangement around a table"
+    ],
+    "extra": "natural lighting, photorealistic, realistic skin texture, varied natural faces, subtle imperfections, not plastic",
+    "subject_hint": "Give the group a shared job and a place: 'four clinic staff in scrubs at a reception desk'. Name the market explicitly ('a Korean woman in her forties'): left unsaid, these models default to Western faces, which reads wrong on a Korean clinic page.",
+    "default_aspect": "16:9",
+    "transparent": "no",
+    "higgsfield": {
+      "skill": "higgsfield-generate",
+      "model": "nano_banana_flash"
+    },
+    "note": "The hardest shot to get right. Faces multiply the failure rate, so generate a few and pick."
+  },
+  "equipment-hero": {
+    "label": "Equipment, whole unit",
+    "framing": "the whole machine in frame from a slight three-quarter angle, standing in the room it actually belongs to, with something ordinary beside it that gives away its real size, controls and panels legible",
+    "rhythm": [
+      "a straight three-quarter view at standing eye level",
+      "a lower angle that makes the unit read as substantial",
+      "a wider frame with more of the room around it",
+      "a front-on view square to the control panel"
+    ],
+    "subject_hint": "Name the machine, its housing material, and its scale: 'a floor-standing white enamelled laser device on castors, waist height'.",
+    "default_aspect": "4:3",
+    "transparent": "ok",
+    "higgsfield": {
+      "skill": "higgsfield-product-photoshoot",
+      "mode": "product_shot"
+    },
+    "note": "Scale is what generated equipment gets wrong. Always put a size cue in the subject.",
+    "cutout": "higgsfield image_background_remover when isolated; local imagegen.py cutout when bottom-anchored or fill-width"
+  },
+  "equipment-detail": {
+    "label": "Equipment, close detail",
+    "framing": "a close crop on one working part of the machine, the handpiece or the dial or the display, filling the frame, material and finish clearly readable, everything else falling away out of focus",
+    "rhythm": [
+      "square onto the detail, centered",
+      "a raking angle that catches the edge highlight",
+      "an extreme macro on texture and machining",
+      "the detail framed slightly off-center with depth behind"
+    ],
+    "subject_hint": "Name the single part and its material: 'the brushed-steel handpiece resting in its cradle'.",
+    "default_aspect": "1:1",
+    "transparent": "no",
+    "higgsfield": {
+      "skill": "higgsfield-product-photoshoot",
+      "mode": "product_shot"
+    }
+  },
+  "product-catalog": {
+    "label": "Product, catalog frame",
+    "framing": "one product centered and fully visible, straight product-catalog framing, true-to-life proportions and color, generous even margins",
+    "rhythm": [
+      "straight-on catalog framing, centered",
+      "a slight hero angle with a touch more top light",
+      "a three-quarter view with a soft cast shadow below",
+      "a tight crop on the material and finish"
+    ],
+    "subject_hint": "Material, form, color, and one defining detail: 'an amber glass serum dropper bottle with a bamboo cap'.",
+    "default_aspect": "1:1",
+    "transparent": "ok",
+    "higgsfield": {
+      "skill": "higgsfield-product-photoshoot",
+      "mode": "product_shot"
+    },
+    "cutout": "higgsfield image_background_remover when isolated; local imagegen.py cutout when bottom-anchored or fill-width"
+  },
+  "product-cutout": {
+    "label": "Product, for a cutout",
+    "framing": "exactly one object, nothing else in frame, no props and no scenery, the whole object visible and evenly lit",
+    "rhythm": [
+      "centered and square to the camera",
+      "a gentle three-quarter turn",
+      "tipped very slightly back",
+      "a closer crop keeping the whole silhouette"
+    ],
+    "subject_hint": "One object only. A flat-lay of five things cannot be keyed; that is five cutouts.",
+    "default_aspect": "1:1",
+    "transparent": "preferred",
+    "matte_method": "diff",
+    "higgsfield": {
+      "skill": "higgsfield-product-photoshoot",
+      "mode": "product_shot"
+    },
+    "note": "higgsfield renders it, imagegen.py cutout pulls the alpha. Alpha is not something higgsfield can produce.",
+    "cutout": "higgsfield image_background_remover when isolated; local imagegen.py cutout when bottom-anchored or fill-width"
+  },
+  "metaphor-object": {
+    "label": "Value proposition as an object",
+    "framing": "a single physical object standing in for an abstract idea, sculptural and deliberate, isolated so the metaphor reads instantly, nothing else competing in frame",
+    "rhythm": [
+      "centered and monumental",
+      "caught mid-air, weightless",
+      "opening or coming apart to show inside",
+      "a close crop on where the meaning sits"
+    ],
+    "subject_hint": "Pick a concrete object, never the abstraction. 'A brass key resting in an open palm', not 'security'.",
+    "default_aspect": "1:1",
+    "transparent": "ok",
+    "higgsfield": {
+      "skill": "higgsfield-product-photoshoot",
+      "mode": "conceptual_product"
+    },
+    "note": "Reach for ui-screenshot first. A metaphor object is the fallback for a claim no screen can show.",
+    "cutout": "higgsfield image_background_remover when isolated; local imagegen.py cutout when bottom-anchored or fill-width"
+  },
+  "ui-screenshot": {
+    "label": "Product screen",
+    "framing": "a clean application interface filling the ENTIRE frame edge to edge as a flat screenshot, no monitor, no bezel, no desk, no room, no hands, believable layout with a sidebar and cards and a chart, the brand accent color used sparingly, all label text reduced to soft blurred placeholder marks with no readable words",
+    "rhythm": [
+      "the screen square-on, filling the frame",
+      "the screen at a slight angle with soft depth",
+      "one panel enlarged in front of the full screen",
+      "two screens overlapping, the front one sharp"
+    ],
+    "subject_hint": "Describe the layout, not the words: 'a booking dashboard with a week calendar and a right-hand detail panel'.",
+    "default_aspect": "21:9",
+    "transparent": "no",
+    "higgsfield": {
+      "skill": "higgsfield-generate",
+      "model": "gpt_image_2"
+    },
+    "note": "The strongest value-proposition image for a product landing. Their GPT Image 2 is the catalog's pick for UI and typography work. Even told to blur every label, the model usually renders panel titles as real words and sometimes misspells one, so read the words in the result before shipping it: a hero image with 'Calendaar' in it is worse than no hero image. Their gpt_image_2 stops at 16:9, so a true 21:9 hero-ui is generated locally; delegate at delegated_aspect and accept a slightly taller frame.",
+    "delegated_aspect": "16:9"
+  },
+  "abstract-form": {
+    "label": "Abstract form",
+    "framing": "a non-representational sculptural form floating in clean space, smooth volumes catching light, calm and balanced, nothing recognisable as an object",
+    "rhythm": [
+      "one central form, symmetrical",
+      "a flowing diagonal with depth and motion",
+      "a cluster of smaller elements orbiting a core",
+      "layered translucent planes receding back"
+    ],
+    "subject_hint": "Describe geometry and material, not meaning: 'interlocking matte ribbons of soft-edged glass'.",
+    "default_aspect": "1:1",
+    "transparent": "ok",
+    "higgsfield": {
+      "skill": "higgsfield-generate",
+      "model": "gpt_image_2"
+    },
+    "note": "Decoration, not communication. Fine for filling a band, weak at carrying a claim.",
+    "cutout": "higgsfield image_background_remover when isolated; local imagegen.py cutout when bottom-anchored or fill-width"
+  },
+  "detail-macro": {
+    "label": "Material macro",
+    "framing": "an extreme close crop on surface and material alone, texture filling the whole frame, no object silhouette and no context",
+    "rhythm": [
+      "flat on, the texture even across the frame",
+      "raking light across the surface picking out relief",
+      "a shallow angle with the focus falling away",
+      "the meeting line where two materials touch"
+    ],
+    "subject_hint": "Name the material and its state: 'coarse ground coffee, freshly cut'.",
+    "default_aspect": "1:1",
+    "transparent": "no",
+    "higgsfield": {
+      "skill": "higgsfield-product-photoshoot",
+      "mode": "product_shot"
+    },
+    "note": "A texture band between two heavy sections. Rests the eye and needs no subject."
+  },
+  "icon-flat": {
+    "label": "Flat icon",
+    "framing": "one clear flat symbol, centered with a strong readable silhouette and generous even margins, drawn flat with no perspective, no three-dimensional rendering, no pedestal or podium, no reflection, no drop shadow, no badge or container ring, on a plain background",
+    "rhythm": [
+      "a single clear symbol, perfectly balanced",
+      "the symbol with one small accent element",
+      "a rounder friendlier take on the symbol",
+      "a bolder more geometric take on the symbol"
+    ],
+    "subject_hint": "Name the symbol plainly: 'a calendar page with a checkmark'.",
+    "default_aspect": "1:1",
+    "transparent": "preferred",
+    "matte_method": "white",
+    "style_hint": "flat-graphic",
+    "higgsfield": null,
+    "note": "Usually you want `entities.icon` with a hugeicons name instead. Generate an icon only when the page needs illustrated tiles rather than line glyphs. Kept local: the white matte is a single cheap render and higgsfield has no alpha.",
+    "cutout": "local: white matte, one render, no round trip",
+    "palette_required": "flat-graphic carries NO brand colors, so pass the org's palette words in --shared ('in deep navy and cool white only'). Skipped on a navy clinic and the icons came back teal, red and green and the logo came back green: every photographic image on the page was on-palette and only the flat art clashed."
+  },
+  "logo-mark": {
+    "label": "Logo mark",
+    "framing": "a logo mark centered with clean margins, flat and evenly lit, no perspective, no pedestal, no reflection, no drop shadow, no surrounding badge or frame, on a plain background",
+    "rhythm": [
+      "the mark alone, centered",
+      "the mark with its wordmark set beside it",
+      "the mark with its wordmark set beneath it",
+      "a simplified single-color version of the mark"
+    ],
+    "subject_hint": "Put any wordmark in quotes so it renders as typed: 'a logo with the wordmark \"NORTHWIND\" and a compass emblem'.",
+    "default_aspect": "1:1",
+    "transparent": "preferred",
+    "matte_method": "white",
+    "style_hint": "flat-graphic",
+    "higgsfield": null,
+    "note": "Fills organizations.logo, which renders uncropped in the nav, so it must be a real transparent PNG.",
+    "cutout": "local: white matte, one render, no round trip",
+    "palette_required": "flat-graphic carries NO brand colors, so pass the org's palette words in --shared ('in deep navy and cool white only'). Skipped on a navy clinic and the icons came back teal, red and green and the logo came back green: every photographic image on the page was on-palette and only the flat art clashed."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "package": "@laney/entity-setup",
+  "version": "0.1.0",
+  "skillName": "entity-setup",
+  "kind": "workflow",
+  "dependencies": {
+    "@laney/writing": "workspace:*",
+    "@higgsfield/generate": "workspace:*",
+    "@higgsfield/product-photoshoot": "workspace:*",
+    "@higgsfield/soul-id": "workspace:*"
+  },
+  "composition": {
+    "@laney/writing": "always",
+    "@higgsfield/generate": "on-demand",
+    "@higgsfield/product-photoshoot": "on-demand",
+    "@higgsfield/soul-id": "on-demand"
+  },
+  "exports": {
+    "agent": "SKILL.md",
+    "seminarMcpPath": "references/seminar-mcp-path.md"
+  }
+}

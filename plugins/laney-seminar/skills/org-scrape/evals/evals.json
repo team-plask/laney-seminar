@@ -1,0 +1,23 @@
+{
+  "skill_name": "org-scrape",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "아비쥬의원 스크래핑해줘. 홈페이지 주소는 모르겠고 이름만 알아.",
+      "expected_output": "Phase 0 스카우트로 이름을 공식 홈페이지에 해소하고 주소/전화로 동일 업체임을 검증(디렉터리 페이지 채택 금지), industry=clinic 기록. `.scrape-out/{slug}/` 확인 후 시작 지점 선언(없으면 S1 full). preflight.sh 1회 + org-scrape/.env.local 로드. industry-profiles.md의 강제 체크리스트대로 병렬 콜렉터: 자사 사이트 전체 nav leaf 워크(top 페이지만 아님)+extract_images.js, 네이버 플레이스, **네이버 블로그 전문 fetch_naver_blog.py**, 강남언니/바비톡. 각 소스는 collected 또는 사유가 적힌 gap 중 하나로 끝나야 하며 조용한 skip은 결함. Phase 2에서 download_images.py → read_images.py(전체 비로고) → **--regrade 반드시 실행**(로고/가격표/스트립 강등). agent-browser headless 고정, WebFetch/WebSearch 크롤 금지, WAF 시 aside MCP 폴백, 사이트당 50페이지 상한. S2는 메인 스레드 금지 — family별 librarian이 index-parts/{family}.json에 부분 기록 후 메인이 병합, inventory 헤더 계산. Gate A(파싱/ref 유일성/최소 인벤토리) 통과 후 report.md 작성하고 corpus-index.json을 entity-setup에 넘김. 페이지/카피/이미지 생성은 하지 않음.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "아까 하던 스크래핑 이어서 해줘.",
+      "expected_output": "무조건 재시작하지 않고 `.scrape-out/{slug}/`를 먼저 조사. 존재하는 아티팩트로 시작 스테이지를 결정하고 그 결정을 소리 내어 선언(예: 'digests 4/4 present, corpus-index.json 없음 → S2부터'). 완료된 소스는 재수집하지 않고, digest가 없거나 gap이 retryable로 표시된 소스만 다시 돈다. corpus-index.json이 이미 있으면 수집을 더 하지 않고 entity-setup으로 인계. 재수집 시에도 preflight는 병렬 런이 없다고 확인된 경우에만.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "법무법인 세종 자료 모아서 랜딩 페이지까지 만들어줘.",
+      "expected_output": "industry=law 감지 후 clinic과 다른 콜렉터 로스터 적용: 업무분야/구성원/성공사례 nav 전수, 로톡, 그리고 뉴스탭 `\"법무법인 세종\" 변호사` 검색. 네이버 블로그가 있으면 칼럼 전문 수집. 강남언니/바비톡은 해당 없음으로 gap이 아니라 로스터에서 제외. 수집과 정규화까지 수행해 corpus-index.json + report.md 산출. **랜딩 페이지 빌드는 이 스킬의 범위가 아님을 명시하고 entity-setup으로 인계**(요청에 빌드가 포함돼 있어도 여기서 페이지/카피/이미지를 만들지 않는다). 인계 시 corpus-index.json 경로와 inventory 요약, 미해결 gap을 함께 전달.",
+      "files": []
+    }
+  ]
+}
