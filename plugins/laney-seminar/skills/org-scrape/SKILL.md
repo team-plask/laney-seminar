@@ -151,6 +151,33 @@ a broad multi-source run — the two goals point the same way here, so when a sp
 instruction and a rule above collide, the rule wins and the speed comes from cutting sources
 and pages instead.
 
+### `seminar-min` fallback — the clinic has NO homepage
+
+Some owners have no website at all. The profile still runs; the source ladder changes:
+
+1. **Discovery**: DuckDuckGo `"{병원명} {지역}"` and `"site:gangnamunni.com {병원명}"`.
+   The 강남언니 desktop search page does not respond to URL queries (measured), but DDG
+   reliably surfaces the hospital page (`gangnamunni.com/hospitals/{id}`) — that link is
+   the way in. Confirm identity by address/phone before collecting anything.
+2. **Primary source becomes 강남언니**: events with prices (open each event's detail
+   page — the list under-reports), doctors, address, hours, ratings. **Label every price
+   `source: gangnamunni`** — these are platform-listed prices, and the chatbot prompt must
+   say so ("강남언니 게시 기준"). 정가/할인율은 강남언니가 명시한 값만, 그대로.
+3. **Cross-check grounding** (hours/address/phone) against Google Maps (try once; record
+   a gap if denied) and hospital directory sites that DDG surfaces.
+4. **Naver (map/place/blog) stays `not-connected`** — the whole naver.com domain is
+   blocked by browser policy (measured). Record it; do not retry in a loop.
+5. **NO platform imagery on the landing.** Public visibility is not reuse permission;
+   a platform-hosted photo must never become the clinic's hero image. This mode ships a
+   text-only page + chat; the owner adds photos in the dashboard.
+6. **The owner is a first-class source.** They are present and authoritative — hours,
+   prices, and corrections they state out loud enter the corpus as `source: owner`,
+   and outrank platform listings on conflict.
+
+The corpus is thinner, so the never-wrong prompt matters more: more "확인 후
+안내드리겠습니다", never a guess. Record `profile: seminar-min (no-homepage fallback)`
+in report.md.
+
 ### Image URLs ride along for free — even in `seminar-min`
 
 The profile skips image *downloads* and vision reading, but every visited page's
