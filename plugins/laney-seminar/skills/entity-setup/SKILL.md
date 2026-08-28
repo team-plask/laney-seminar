@@ -12,7 +12,8 @@ description: >-
   "인물 사진 뽑아줘", "장비 사진", "키치한 느낌으로"). Those are steps of this workflow.
   When a prospect/stub's source facts are still scattered, conflicting, or unlicensed,
   use `org-launch-prep` first and return here with its approved ontology handoff.
-  NOT for a bespoke enterprise landing in its own repo or a design that section options
+  Also trigger on Korean asks: "레이니에 넣어줘", "수집한 걸 입력해줘", "챗봇 데이터 셋업",
+  "엔티티 셋업". NOT for a bespoke enterprise landing in its own repo or a design that section options
   cannot express (that is `custom-landing`).
 ---
 
