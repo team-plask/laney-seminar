@@ -9,7 +9,7 @@
       "name": "laney-seminar",
       "source": "./plugins/laney-seminar",
       "description": "병원 홈페이지를 수집해 상담 챗봇의 근거 데이터로 만드는 세미나용 스킬 묶음",
-      "version": "1.6.1"
+      "version": "1.7.0"
     }
   ],
   "description": "병원 홈페이지를 근거 기반으로 수집해 Laney 상담 챗봇 데이터로 만드는 세미나용 스킬 모음"

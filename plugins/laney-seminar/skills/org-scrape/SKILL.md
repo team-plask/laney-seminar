@@ -174,6 +174,41 @@ Some owners have no website at all. The profile still runs; the source ladder ch
    prices, and corrections they state out loud enter the corpus as `source: owner`,
    and outrank platform listings on conflict.
 
+### Thin homepage — ask the owner instead of guessing
+
+A homepage can exist and still be thin: 시술만 있고 가격이 없다, 진료시간이 없다,
+FAQ가 없다, 원장 소개만 있다. In `seminar-min` the owner is sitting right there, so a
+gap is a question, not a dead end. **Never fill a gap by inference, by another clinic's
+page, or by a "일반적으로" number.**
+
+Trigger the interview when any of these is true after S2:
+- priced offerings < 5, or more than half of offerings carry no price
+- 진료시간·주소·전화 중 하나라도 비어 있음
+- FAQ 0건
+
+Ask in small batches, in the owner's language, one screen at a time — never a
+questionnaire dump. Show what you already have so they only fill the holes:
+
+> "홈페이지에서 시술 12개를 찾았는데 가격이 적힌 게 3개뿐이라, 나머지는 챗봇이
+> '확인 후 안내드리겠습니다'로만 답하게 됩니다. 지금 대표적인 것 몇 개만 불러주시면
+> 바로 넣을게요. 울쎄라, 슈링크, 보톡스 순으로 얼마인가요?"
+
+Rules for owner-sourced facts:
+1. Record them as `source: owner`, with the date. They outrank platform listings on
+   conflict, and rank below the clinic's own published page only when the page is current.
+2. **Read the number back before writing it.** "울쎄라 100샷 60만원, 맞을까요?" A
+   misheard price is worse than a missing one.
+3. If the owner is unsure, do NOT write it. Leave the gap and tell them the chatbot will
+   say "확인 후 안내드리겠습니다" for that item until they fill it in the dashboard.
+4. 시술 효과·부작용·기간에 대한 문장은 원장님이 말한 범위를 넘지 않는다. Do not
+   compose medical claims from general knowledge.
+5. Ask for 진료시간·휴진일·주차·위치 explicitly if missing — these are the most common
+   chatbot questions and the owner answers them in seconds.
+
+Keep the batch short (3~5 items), write what you got, then continue. If the owner would
+rather skip, that is fine: a thin corpus with an honest chatbot is the floor this profile
+guarantees.
+
 The corpus is thinner, so the never-wrong prompt matters more: more "확인 후
 안내드리겠습니다", never a guess. Record `profile: seminar-min (no-homepage fallback)`
 in report.md.
