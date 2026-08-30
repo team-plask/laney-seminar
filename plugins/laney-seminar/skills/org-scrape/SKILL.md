@@ -105,7 +105,7 @@ and a third of the collected material was never read by the write path that cons
 
 | profile | the consumer | collect | skip |
 |---|---|---|---|
-| **`seminar-min`** | a live-session demo: catalog + grounded chatbot, ~10 min | **own site only, single source.** The master catalog page (every treatment's name + published price), event/package pages **top 10 categories**, FAQ / hours / doctors / address / aftercare / policies (the chatbot's grounding), footer legal block | ALL external platforms (`skipped-by-profile`), treatment detail pages, blog entirely, imagery, channels beyond name+URL. **S2 collapses**: single source → nothing to merge; the catalog maps straight to products; promotions are not created at all (no 정가 evidence, none claimed) |
+| **`seminar-min`** | a live-session demo: catalog + grounded chatbot, **15분 하드 캡** | **own site only, single source.** The master catalog page (every treatment's name + published price), event/package pages **top 10 categories**, FAQ / hours / doctors / address / aftercare / policies (the chatbot's grounding), footer legal block | ALL external platforms (`skipped-by-profile`), treatment detail pages, blog entirely, imagery, channels beyond name+URL. **S2 collapses**: single source → nothing to merge; the catalog maps straight to products; promotions are not created at all (no 정가 evidence, none claimed) |
 | **`seminar`** | `entity-setup` seminar path → laney MCP (entities, products, promotions, one prompt) | treatment catalog + descriptions (top ~15 details), **all prices and events**, the price-primary platform, org profile / hours / doctors / FAQ / aftercare / visit process | blog post **bodies** (titles+dates only), image download and vision reading, channel depth beyond name+URL, cases, press, secondary platforms |
 | **`launch`** (default) | `org-evidence` → `org-launch-prep` → `entity-setup` full path | everything below, including Phase 2 vision reading and the full image inventory | nothing |
 | **`audit`** | `org-evidence` presence audit | this skill usually stays inactive; activate only for a rendered surface a finding depends on | the rest |
@@ -150,6 +150,48 @@ authoritative, assert no discount, and let the platforms go. That is faster *and
 a broad multi-source run — the two goals point the same way here, so when a speed
 instruction and a rule above collide, the rule wins and the speed comes from cutting sources
 and pages instead.
+
+### 시간 예산 — `seminar-min`은 15분 하드 캡
+
+세미나에서는 시계가 요구사항이다. 원장님 수십 명이 같은 화면을 보고 기다리고, 강의
+진행표에 수집 15분이 잡혀 있다. **완성도가 아니라 시각이 종료 조건이다.**
+
+**시작할 때 시작 시각을 기록하고 출력한다.** 이후 모든 판단은 경과 시간 기준이다.
+
+```bash
+date +%s > .scrape-out/{slug}/started_at   # 그리고 "수집 시작 14:03, 목표 종료 14:18" 출력
+```
+
+| 경과 | 이 시점에 끝나 있어야 하는 것 | 늦었으면 |
+|---|---|---|
+| **T+2분** | Phase 0 스카우트, 홈페이지 확정 + 수집기 분기 완료 | 후보 확인을 멈추고 가장 유력한 도메인으로 확정, `notable`에 기록 |
+| **T+6분** | **카탈로그(시술명+가격) 수집 완료** | 이벤트·패키지 페이지 캡을 top 10 → **top 3**으로 줄인다 |
+| **T+9분** | FAQ·진료시간·의료진·약관까지 수집 종료 | **수집을 여기서 끊는다.** 도는 수집기에 중단 신호를 보내고 부분 digest를 받는다 |
+| **T+11분** | S2 정규화 시작 | 샤딩 없이 단일 패스로 정규화 |
+| **T+15분** | **하드 스톱, 핸드오프** | 그 시점 코퍼스로 넘긴다. 더 하지 않는다 |
+
+**T+9분 중단 방법.** 수집기는 샤드 단위로 끊는다. 도는 에이전트에게 새 지시를 보내지
+말고, **이미 raw에 쓴 파일까지만으로 digest를 반환하라**고 한다. 절반만 걸은 샤드도
+쓴 것까지는 유효하다. 못 간 URL은 버리지 말고 `gap`으로 남긴다 — 시간이 없어 못 갔다는
+사실 자체가 기록이다(`gap: "시간 예산 초과, 미방문"`).
+
+**절단 사다리 — 시간이 모자라면 이 순서로 버린다.** 위에서부터 버리고, 아래는 지킨다.
+
+1. 이벤트·패키지 카테고리 (top 10 → 3 → 0)
+2. 의료진 프로필, 약관·법적 고지
+3. 내원 안내·주차·오시는 길
+4. FAQ (있는 만큼만)
+5. 진료시간·주소·전화 ← 여기부터는 챗봇이 못 쓴다
+6. **시술명 + 가격** ← 절대 버리지 않는다. 이게 없으면 수집 자체가 실패다
+
+**시간이 예산을 깎아도 correctness floor는 그대로다.** 빠르게 하려고 raw 파일 없이
+받아적거나, 원문 대조를 건너뛰거나, 확인 안 된 가격을 채우지 않는다. 시간이 없으면
+**덜 수집하는 것이지, 덜 검증하는 것이 아니다.** Gate A의 원문 대조는 마지막까지 남는다
+(대조는 이미 쓴 파일을 읽는 일이라 빠르다).
+
+**끝나면 무엇을 못 했는지 말한다.** "15분 안에 시술 84건과 가격, FAQ 12개를 받았고,
+이벤트 카테고리 7개와 의료진 소개는 시간 때문에 건너뛰었습니다. 나중에 추가할 수
+있습니다." 조용히 축소하고 다 된 것처럼 보고하는 것이 이 스킬에서 가장 나쁜 실패다.
 
 ### `seminar-min` fallback — the clinic has NO homepage
 
